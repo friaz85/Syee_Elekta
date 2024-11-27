@@ -136,9 +136,10 @@ export class OrdenesComponent implements OnInit {
       } else {
         this.spinner.hide();
         Swal.fire({
-          icon: "warning",
+          icon: "info",
           title: "Atención",
           text: "No existen ordenes de servicio aceptadas.",
+          allowOutsideClick: false
         }).then(
           (result) => {
             // this.router.navigate(["/pages/ordenes-sin-aceptar"]);
@@ -246,6 +247,7 @@ export class OrdenesComponent implements OnInit {
         icon: "success",
         title: "Atención",
         text: "Orden aceptada con éxito",
+        allowOutsideClick: false
       }).then(
         (result) => {
           this.modal.dismissAll();
@@ -263,6 +265,7 @@ export class OrdenesComponent implements OnInit {
         icon: "success",
         title: "Atención",
         text: "Orden rechazada con éxito",
+        allowOutsideClick: false
       }).then(
         (result) => {
           this.modal.dismissAll();
@@ -282,6 +285,7 @@ export class OrdenesComponent implements OnInit {
         icon: "success",
         title: "Atención",
         text: "Orden iniciada con éxito",
+        allowOutsideClick: false
       }).then(
         (result) => {
           this.modal.dismissAll();

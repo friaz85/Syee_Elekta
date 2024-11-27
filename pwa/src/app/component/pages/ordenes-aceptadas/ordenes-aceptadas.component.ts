@@ -117,9 +117,10 @@ export class OrdenesAceptadasComponent {
                           } else {
                             this.spinner.hide();
                             Swal.fire({
-                              icon: "warning",
+                              icon: "info",
                               title: "Atención",
                               text: "No existen ordenes de servicio aceptadas o iniciadas.",
+                              allowOutsideClick: false
                             }).then(
                               (result) => {
                                 this.router.navigate(["/pages/ordenes-sin-aceptar"]);
@@ -151,6 +152,7 @@ export class OrdenesAceptadasComponent {
         icon: "success",
         title: "Atención",
         text: "Orden iniciada con éxito",
+        allowOutsideClick: false
       });
       // this.getOrdenes();
       this.OdeS.intStatus = 4;
@@ -168,6 +170,7 @@ export class OrdenesAceptadasComponent {
         icon: "success",
         title: "Atención",
         text: "Orden en proceso de cierre",
+        allowOutsideClick: false
       }).then(
         (result) => {
           this.getOrdenes();
@@ -200,8 +203,14 @@ export class OrdenesAceptadasComponent {
 
   onSelect(event: any) {
     console.log(event);
+    this.spinner.show();
     this.files = [];
     this.files.push(...event.addedFiles);
+    // Agregar timer de 5 segundos y cerrar spinner
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 5000
+    );
   }
 
   onRemove(event: any) {
@@ -221,6 +230,7 @@ export class OrdenesAceptadasComponent {
         icon: "success",
         title: "Atención",
         text: "Paso " + step.strprocesocierre + " guardado con éxito.",
+        allowOutsideClick: false
       }).then(
         (result) => {
           this.files = [];
@@ -241,6 +251,7 @@ export class OrdenesAceptadasComponent {
         icon: "success",
         title: "Atención",
         text: "Orden finalizada con éxito",
+        allowOutsideClick: false
       }).then(
         (result) => {
           window.location.reload();

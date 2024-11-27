@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, Component } from '@angular/core';
+import { APP_INITIALIZER, Component, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from './shared/component/loader/loader.component';
@@ -9,6 +9,9 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Platform } from '@angular/cdk/platform';
 import { timer, take } from 'rxjs';
 import { PromptComponentComponent } from './shared/component/prompt-component/prompt-component.component';
+import { AppUpdateService } from './shared/services/AppUpdate.service';
+import { SwUpdate } from '@angular/service-worker';
+import Swal from "sweetalert2";
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
@@ -23,10 +26,13 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
 export class AppComponent {
 
   private promptEvent: any;
+  private readonly EVERY_HOUR = 3600 * 1000
 
   constructor(
     private bottomSheet: MatBottomSheet,
-    private platform: Platform
+    private platform: Platform,
+    private zone: NgZone,
+    public swUpdate: SwUpdate
   ) {
     if (this.platform.ANDROID) {
       window.addEventListener('beforeinstallprompt', (event: any) => {
@@ -41,6 +47,43 @@ export class AppComponent {
         this.openPromptComponent('ios');
       }
     }
+  }
+
+  ngOnInit(): void {
+    // running the interval outside of Zone.js allows the app to eventually get stable:
+    // https://angular.io/api/core/ApplicationRef#isstable-examples-and-caveats
+    this.zone.runOutsideAngular(() => {
+      setInterval(() => {
+        this.swUpdate.checkForUpdate()
+      }, this.EVERY_HOUR)
+    })
+    // subscribe for app updates available
+    this.swUpdate.versionUpdates.subscribe(async (event) => {
+
+      if (event.type === "VERSION_READY") {
+        Swal.fire({
+          icon: "info",
+          title: "Atención",
+          text: "Existe una nueva versión de la aplicación, por favor actualiza para continuar.",
+          allowOutsideClick: false
+        }).then(
+          async (result) => {
+            await this.swUpdate.activateUpdate()
+            // refresh the page so that the new files become active
+            document.location.reload()
+          }
+        );
+      }
+      // const updateNow = window.confirm(
+      //   `New version available! Update now and restart the app?`
+      // )
+      // if (updateNow) {
+      //   // trigger the update - this will download all changed files
+      //   await this.swUpdate.activateUpdate()
+      //   // refresh the page so that the new files become active
+      //   document.location.reload()
+      // }
+    })
   }
 
   openPromptComponent(mobileType: 'ios' | 'android') {

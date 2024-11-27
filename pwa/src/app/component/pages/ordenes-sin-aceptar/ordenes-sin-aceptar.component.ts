@@ -10,6 +10,7 @@ import { Api } from './../../../shared/services/api.service';
 import moment from 'moment';
 import Swal from "sweetalert2";
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ordenes-sin-aceptar',
@@ -32,7 +33,8 @@ export class OrdenesSinAceptarComponent implements OnInit {
     private Api: Api,
     private auth: AuthService,
     private ref: ChangeDetectorRef,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    public router: Router
   ) { }
 
   async ngOnInit() {
@@ -48,6 +50,18 @@ export class OrdenesSinAceptarComponent implements OnInit {
       console.log(data);
       this.arrOrdenes = data;
       this.spinner.hide();
+      if (this.arrOrdenes.length == 0) {
+        Swal.fire({
+          icon: "info",
+          title: "Atención",
+          text: "No hay ordenes asignadas para mostrar",
+          allowOutsideClick: false
+        }).then(
+          (result) => {
+            this.router.navigate(["/pages/ordenes"]);
+          }
+        );
+      }
     })
   }
 
@@ -81,6 +95,7 @@ export class OrdenesSinAceptarComponent implements OnInit {
         icon: "success",
         title: "Atención",
         text: "Orden aceptada con éxito",
+        allowOutsideClick: false
       }).then(
         (result) => {
           this.modal.dismissAll();
@@ -100,6 +115,7 @@ export class OrdenesSinAceptarComponent implements OnInit {
         icon: "success",
         title: "Atención",
         text: "Orden rechazada con éxito",
+        allowOutsideClick: false
       }).then(
         (result) => {
           this.modal.dismissAll();

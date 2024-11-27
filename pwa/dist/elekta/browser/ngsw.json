@@ -1,6 +1,10 @@
 {
   "configVersion": 1,
-  "timestamp": 1732661721518,
+  "timestamp": 1732725205547,
+  "appData": {
+    "version": "1.3",
+    "changelog": "Updates to the app"
+  },
   "index": "/index.html",
   "assetGroups": [
     {
@@ -12,16 +16,16 @@
       },
       "urls": [
         "/chunk-3L6Y7OGV.js",
+        "/chunk-AH446Y5B.js",
         "/chunk-FI2JCZWM.js",
-        "/chunk-HRONO57M.js",
         "/chunk-JGYM447R.js",
-        "/chunk-JIGHDIAW.js",
         "/chunk-RMQCHX6C.js",
         "/chunk-U67PE3JY.js",
+        "/chunk-WBAF3ARI.js",
         "/chunk-XE44M2BB.js",
         "/favicon.ico",
         "/index.html",
-        "/main-ROLJW5XY.js",
+        "/main-ZB6YCH3R.js",
         "/polyfills-GTEVC5Y5.js",
         "/styles-WHEDW734.css"
       ],
@@ -2345,16 +2349,16 @@
     "/assets/svg/icon-sprite.svg": "573cf6ba095a71125c53525dbc1426fc4778a424",
     "/assets/svg/landing-icons.svg": "2508bfed1e27b22c59e6e4a421fb7829b2504ee8",
     "/chunk-3L6Y7OGV.js": "7222a0a11dcd5c1dbfec7275a60e2da8d06d1944",
+    "/chunk-AH446Y5B.js": "7393b7199e0bf814b966626b0a20f4e5095366e3",
     "/chunk-FI2JCZWM.js": "d7fe490e5e1727c522fd816aca2c1642a1422eab",
-    "/chunk-HRONO57M.js": "41c1552aee97a888cf6edbc92dca136610741034",
     "/chunk-JGYM447R.js": "9f8cda118aa87c55f448942feed115821c3d0ac0",
-    "/chunk-JIGHDIAW.js": "de059f439551a4a455f16dc2459a1b5c005f5382",
     "/chunk-RMQCHX6C.js": "5f625e3fa93daefc7aa0fa98865065203a90c61a",
     "/chunk-U67PE3JY.js": "43eeefaa68788dc3988a4c9203f6706a9e4e587d",
+    "/chunk-WBAF3ARI.js": "8877f65c08ba26e057ee44bc8d37adb18d6f3047",
     "/chunk-XE44M2BB.js": "153f52788e8d9a9f00a0e8d7e3a1c01fd9db8aed",
     "/favicon.ico": "b333d2a3ef3607c0d38646aa9ed58a7af589c7dc",
-    "/index.html": "696961fd250b106d14952060a508e4ea83867b70",
-    "/main-ROLJW5XY.js": "1493d2b5de5970040d3a0089f5e26c6035db44ba",
+    "/index.html": "83553bfc4f17b3cba588a862a98000f545933eb3",
+    "/main-ZB6YCH3R.js": "5d54e185c97b65d6ae7692aec55ea383502b92d3",
     "/media/4-F47XIXLY.jpg": "1df1a9cba766c7b91763ea2fd4f823226cc5fa76",
     "/media/Banner-ILZCPRI4.png": "0afd14565fd9a6ffe2e7f03dc23ec64da4745593",
     "/media/Dashboard-Ecommerce-banner-WK7YEBPL.gif": "3d93a4ad736390ee6c5b7062e3788f1c96415113",

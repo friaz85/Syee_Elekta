@@ -48,8 +48,9 @@ export class NavmenuService {
     // },
   
     // { level: 1, id:2,  path: '/sample-page',  title: "sample-page-3", icon: "support-tickets", active: false, type: "link" },
-    { level: 1, id:1,  path: '/pages/ordenes',  title: "Órdenes", icon: "fa fa-file-text-o me-1 text-white", active: false, type: "link" },
-    { level: 1, id:2,  path: '/pages/ordenes-sin-aceptar',  title: "Órdenes por iniciar", icon: "fa fa-file-text-o me-1 text-white", active: false, type: "link" },
+    { level: 1, id:1,  path: '/pages/ordenes',  title: "Órdenes", icon: "fa fa-calendar me-1 text-white", active: false, type: "link" },
+    // { level: 1, id:2,  path: '/pages/ordenes-sin-aceptar',  title: "Órdenes por iniciar", icon: "fa fa-file-text-o me-1 text-white", active: false, type: "link" },
+    { level: 1, id:2,  path: '/pages/ordenes-sin-aceptar',  title: "Órdenes por iniciar", icon: "fa fa-file-circle-check me-1 text-white", active: false, type: "link" },
   ]
 
   item = new BehaviorSubject<Menu[]>(this.MENUITEMS);
