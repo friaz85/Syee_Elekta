@@ -1,0 +1,16 @@
+<mat-toolbar *ngIf="data.mobileType === 'android'" color="primary" class="android-prompt">
+  <button class="btn btn-primary" (click)="installPwa()">
+    Instalar aplicación
+  </button>
+  <button class="btn btn-secondary" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div *ngIf="data.mobileType === 'ios'" class="ios-prompt">
+  <div class="w-100 float-end">
+    <button class="close-ios-inv btn btn-secondary" (click)="close()"><mat-icon>close</mat-icon></button>
+  </div>
+  <div>Para instalar esta aplicación en su dispositivo, toque el botón Menú y luego el botón "Agregar a la pantalla de inicio".</div>
+  <div class="vCenter"><img src="./assets/icons/ios-menu-btn.png"> <mat-icon>navigate_next</mat-icon> <img src="./assets/icons/ios-add-btn-32.png"></div>
+</div>

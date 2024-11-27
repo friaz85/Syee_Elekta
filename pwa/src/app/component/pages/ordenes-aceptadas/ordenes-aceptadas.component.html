@@ -1,0 +1,154 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-12 col-md-12 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+      <div class="card" *ngIf="OdeS.intOSId">
+        <div class="card-header pb-0 text-center">
+          <h1>Cierre de orden de servicio</h1>
+        </div>
+        <div class="card-body" *ngIf="OdeS.intStatus == 2 ||  OdeS.intStatus == 4">
+          <div class="row mt-4">
+            <!-- {{OdeS.intOSId}} -->
+            <div class="col-6 text-start">
+              <p><b>Fecha:</b></p>
+            </div>
+            <div class="col-6 text-end">
+              <p>{{ OdeS.fServicio }}</p>
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-12 text-center">
+              <p class="m-1"><b>Descripción</b></p>
+            </div>
+            <div class="col-12 text-center">
+              <p class="m-1">{{ OdeS.strDescripcion }}</p>
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-12 text-center">
+              <p class="m-1"><b>Modelo</b></p>
+            </div>
+            <div class="col-12 text-center">
+              <p class="m-1">{{ OdeS.strModelo }}</p>
+            </div>
+            <div class="col-6 text-start">
+              <p class="m-1"><b>Marca</b></p>
+            </div>
+            <div class="col-6 text-end">
+              <p class="m-1">{{ OdeS.strMarca }}</p>
+            </div>
+            <div class="col-6 text-start">
+              <p class="m-1"><b>Serie</b></p>
+            </div>
+            <div class="col-6 text-end">
+              <p class="m-1">{{ OdeS.serie }}</p>
+            </div>
+            <div class="col-6 text-start">
+              <p class="m-1"><b>MPS</b></p>
+            </div>
+            <div class="col-6 text-end">
+              <p class="m-1">{{ OdeS.strEnergias }}</p>
+            </div>
+            <div class="col-12 text-center">
+              <p class="m-1"><b>Cliente</b></p>
+            </div>
+            <div class="col-12 text-center">
+              <p class="m-1">{{ OdeS.cliente_Nombre }}</p>
+            </div>
+            <div class="col-6 text-start">
+              <p class="m-1"><b>Sitio</b></p>
+            </div>
+            <div class="col-6 text-end">
+              <p class="m-1">{{ OdeS.strSitio }}</p>
+            </div>
+            <div class="col-6 text-start">
+              <p class="m-1"><b>Ubicación</b></p>
+            </div>
+            <div class="col-6 text-end">
+              <!-- <p>{{ modalData.strEnergias }}</p> -->
+            </div>
+            <div class="col-6 text-start">
+              <p class="m-1"><b>Localidad</b></p>
+            </div>
+            <div class="col-6 text-end">
+              <p class="m-1">{{ OdeS.localidad }}</p>
+            </div>
+            <div class="col-6 text-start">
+              <p class="m-1"><b>Región</b></p>
+            </div>
+            <div class="col-6 text-end">
+              <p class="m-1">{{ OdeS.strRegion }}</p>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-12 text-center" *ngIf="OdeS.intStatus == 2">
+              <button class="btn btn-primary btn-block w-100" type="submit" (click)="iniciarOrden()">Iniciar</button>
+            </div>
+            <div class="col-12 text-center mt-3" *ngIf="OdeS.intStatus == 4">
+              <button class="btn btn-secondary btn-block w-100" type="submit" (click)="procesoCierre();">Proceso
+                cierre</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body" *ngIf="OdeS.intStatus == 5 && !finalizado" >
+          <div *ngIf="steps.length > 0">
+            <mat-horizontal-stepper labelPosition="bottom" [linear]="isLinear" #stepper [selectedIndex]="stepIndex">
+              @for (step of steps; track step) {
+              <div class="row">
+                <div class="col-6 offset-3">
+                  <mat-step [editable]="isEditable">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-12 text-center">
+                          <h3>{{step.strprocesocierre}}</h3>
+                        </div>
+                      </div>
+                      <div class="row mt-4">
+                        <div class="col-12 text-center">
+                          <ngx-dropzone (change)="onSelect($event)" [multiple]="false" accept="image/*">
+                            <ngx-dropzone-label>
+                              <div class="dz-message needsclick"><i class="icon-cloud-up"></i>
+                                <h4 class="f-w-700 mb-0">Subir imagen o tomar foto</h4>
+                              </div>
+                            </ngx-dropzone-label>
+                            @for(f of files; track f){
+                            <ngx-dropzone-preview [removable]="true" (removed)="onRemove(f)">
+                              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-preview>
+                            }
+                          </ngx-dropzone>
+                        </div>
+                        <div class="col-12 text-start mt-3">
+                          <h4 class="text-primary mb-3">Notas</h4>
+                          <textarea class="form-control" rows="4" placeholder="Notas" [(ngModel)] = "txtNotas"></textarea>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 text-center mt-3">
+                          <button class="btn btn-primary btn-block w-100" type="submit" (click)="guardarStep(step)" *ngIf="files.length > 0">Guardar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-step>
+                </div>
+              </div>
+  
+  
+              }
+            </mat-horizontal-stepper>
+          </div>
+        </div>
+        <div class="card-body" *ngIf="finalizado">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h3>Cierre realizado con éxito</h3>
+                <p class="alert alert-light-success mt-3">Se le ha enviado un pdf al correo electrónico con la orden de cierre del servicio con toda la información recaudada.</p>
+                <button class="btn btn-primary btn-block w-100" type="submit" (click)="finalizarOrden()">Finalizar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

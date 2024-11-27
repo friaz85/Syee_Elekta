@@ -1,0 +1,19 @@
+.float-end {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 100%;
+}
+.vCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.android-prompt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}

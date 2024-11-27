@@ -1,0 +1,78 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./assets/scss/app.scss";
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+.btn-outline-secondary {
+    color: #00bee7 !important;
+    background-color: transparent;
+    background-image: none;
+    border-color: #00bee7!important;
+}
+
+.btn-outline-secondary:hover {
+    color: #fff !important;
+    border-color: #00bee7!important;
+    background-color: #00bee7  !important;
+
+}
+
+.btn-primary {
+    background-color: #016580 !important;
+    border-color: #016580 !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-step-icon-state-done {
+    background-color: #016580 !important;
+    color: #fff !important;
+}
+
+.mat-step-icon {
+    border-color: #016580 !important;
+    color: #016580 !important;
+    background-color: #fff !important;
+    border: solid 1px;
+    height: 50px !important;
+    width: 50px !important;
+}
+
+.mat-step-icon-selected {
+    background-color: #016580 !important;
+    color: #fff !important;
+}
+
+.mat-stepper-horizontal-line {
+    border-top-color: #016580 !important;
+    border-top-width: medium !important;
+}
+
+.mat-horizontal-stepper-header::before {
+    border-top-color: #016580 !important;
+        border-top-width: medium !important;
+}
+
+.mat-horizontal-stepper-header::after {
+    border-top-color: #016580 !important;
+        border-top-width: medium !important;
+}
+
+.mat-step-label {
+    display: none !important;
+}
+
+.mat-stepper-label-position-bottom .mat-horizontal-stepper-header {
+    padding: calc((var(--mat-stepper-header-height) - 40px) / 2) 50px !important;
+}
+
+.mat-stepper-label-position-bottom .mat-stepper-horizontal-line {
+    margin: 0;
+    min-width: 0;
+    position: relative;
+    top: calc(calc((var(--mat-stepper-header-height) - 50px) / 2) + 25px) !important;
+}
+
+.mat-step-icon-content > span {
+    font-size: 1.5rem;
+}
