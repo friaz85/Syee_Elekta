@@ -10,7 +10,7 @@ import { Platform } from '@angular/cdk/platform';
 import { timer, take } from 'rxjs';
 import { PromptComponentComponent } from './shared/component/prompt-component/prompt-component.component';
 import { AppUpdateService } from './shared/services/AppUpdate.service';
-import { SwUpdate } from '@angular/service-worker';
+import { SwPush, SwUpdate } from '@angular/service-worker';
 import Swal from "sweetalert2";
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
@@ -32,7 +32,8 @@ export class AppComponent {
     private bottomSheet: MatBottomSheet,
     private platform: Platform,
     private zone: NgZone,
-    public swUpdate: SwUpdate
+    public swUpdate: SwUpdate,
+    private swPush: SwPush,
   ) {
     if (this.platform.ANDROID) {
       window.addEventListener('beforeinstallprompt', (event: any) => {
@@ -74,6 +75,12 @@ export class AppComponent {
           }
         );
       }
+
+      this.swPush.messages.subscribe((message)=>{
+        console.log('message', message);
+      });
+
+
       // const updateNow = window.confirm(
       //   `New version available! Update now and restart the app?`
       // )

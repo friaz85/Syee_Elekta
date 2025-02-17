@@ -20,24 +20,24 @@ export const pages: Routes = [
             path: 'ordenes-aceptadas',
             component: OrdenesAceptadasComponent,
             data: {
-              title: "Ordenes aceptadas",
-              breadcrumb: "Ordenes aceptadas",
+              title: "Órdenes en proceso de cierre",
+              breadcrumb: "Órdenes en proceso de cierre",
             }
           },
           {
             path: 'ordenes',
             component: OrdenesComponent,
             data: {
-              title: "Ordenes",
-              breadcrumb: "Ordenes",
+              title: "Órdenes por iniciar",
+              breadcrumb: "Órdenes por iniciar",
             }
           },
           {
             path: 'ordenes-sin-aceptar',
             component: OrdenesSinAceptarComponent,
             data: {
-              title: "Ordenes asignadas",
-              breadcrumb: "Ordenes asignadas",
+              title: "Órdenes por aceptar",
+              breadcrumb: "Órdenes por aceptar",
             }
           },
         ]

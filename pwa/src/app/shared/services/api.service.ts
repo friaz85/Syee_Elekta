@@ -308,4 +308,17 @@ export class Api {
       );
   }
 
+  getImagen() {
+    return this.http
+      .get('assets/images/sin-imagen.jpg', {
+        responseType: 'arraybuffer',
+      })
+      .pipe(
+        map((response: any) => {
+          return new File([response], 'sin-imagen.jpg');
+        }),
+      );
+
+}
+
 }

@@ -7,6 +7,7 @@ import { Api } from '../../shared/services/api.service';
 import { AuthService } from '../../shared/services/auth.service';
 import moment from 'moment';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,7 @@ export class LoginComponent {
     public Api: Api,
     private spinner: NgxSpinnerService
   ) {
+
 
     const userData = localStorage.getItem('user');
     if (userData?.length != null) {
@@ -49,8 +51,18 @@ export class LoginComponent {
     try {
       this.auth.login(this.loginForm.value["email"], this.loginForm.value["password"]).subscribe(async (data) => {
         console.log(data);
+        if (data.length > 0) {
+          await this.opcion1Dia();
+        } else {
+          this.spinner.hide();
+          Swal.fire({
+            icon: "info",
+            title: "Atención",
+            text: "El usuario y/o la contraseña son incorrectos",
+            allowOutsideClick: false
+          })
+        }
 
-        await this.opcion1Dia();
 
       });
     } catch (error) {

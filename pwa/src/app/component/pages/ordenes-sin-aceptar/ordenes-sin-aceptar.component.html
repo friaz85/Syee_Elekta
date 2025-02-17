@@ -109,32 +109,31 @@
       </div>
     </div>
   </div>
-</div>
-
-<ng-template #modalContentRechazo let-close="close">
-  <div class="modal-body">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h1><b>Rechazar asignación</b></h1>
+  <ng-template #modalContentRechazo let-close="close">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1><b>Rechazar asignación</b></h1>
+        </div>
       </div>
+      <div class="row mt-4">
+        <div class="col-12 text-left mt-2">
+          <h2>Razón del rechazo</h2>
+        </div>
+        <div class="col-12 mt-2">
+          <select #cmbCostumer class="form-control" [(ngModel)]="idMotivo">
+            <option value="0">-Seleccione una opción-</option>
+            <option *ngFor="let item of arrMotivosRechazo" [value]="item.intMotivoId">{{ item.strMotivo }}</option>
+          </select>
+        </div>
+        <div class="col-12 text-center mt-2">
+          <textarea class="form-control" rows="4" placeholder="Observaciones" [(ngModel)]="txtObservaciones"></textarea>
+        </div>
     </div>
-    <div class="row mt-4">
-      <div class="col-12 text-left mt-2">
-        <h2>Razón del rechazo</h2>
-      </div>
-      <div class="col-12 mt-2">
-        <select #cmbCostumer class="form-control" [(ngModel)]="idMotivo">
-          <option value="0">-Seleccione una opción-</option>
-          <option *ngFor="let item of arrMotivosRechazo" [value]="item.intMotivoId">{{ item.strMotivo }}</option>
-        </select>
-      </div>
-      <div class="col-12 text-center mt-2">
-        <textarea class="form-control" rows="4" placeholder="Observaciones" [(ngModel)]="txtObservaciones"></textarea>
-      </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="rechazarOrden()">Rechazar</button>
+      <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
+    </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="rechazarOrden()">Rechazar</button>
-    <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
-  </div>
+  </ng-template>
 </div>
-</ng-template>

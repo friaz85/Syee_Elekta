@@ -115,7 +115,7 @@ export class OrdenesComponent implements OnInit {
     await this.Api.OrdenesDeServicioAnioStatus(moment().format('YYYY'), this.auth.currentUserValue.intUsuarioId, 2).subscribe(async (data) => {
     // await this.Api.getOdeSxAnioInge(moment().format('YYYY'), 0).subscribe(async (data) => {
       console.log(data);
-      this.arrData = data.filter((x:any) => x.intStatus == 2 || x.intStatus == 4);
+      this.arrData = data.filter((x:any) => x.intStatus == 2);
       console.log('arrData', this.arrData);
       if (this.arrData.length > 0) {
         for (let i = 0; i < this.arrData.length; i++) {
@@ -240,9 +240,11 @@ export class OrdenesComponent implements OnInit {
   }
 
   async aceptarOrden() {
+    this.spinner.show();
     console.log('Aceptar Orden', moment(this.arrData.fServicio).format('YYYY-MM-DD'));
     let data = await this.Api.OrdenesDeServicioStatusAsig(this.modalData.intOSId, 2, 0, '', this.auth.currentUserValue.intUsuarioId, this.auth.currentUserValue.intUsuarioId, moment(this.arrData.fServicio).format('YYYY-MM-DD')).subscribe((data) => {
       console.log(data);
+    this.spinner.hide();
       Swal.fire({
         icon: "success",
         title: "Atención",
@@ -258,9 +260,11 @@ export class OrdenesComponent implements OnInit {
   }
 
   async rechazarOrden() {
+    this.spinner.show();
     console.log('Rechazar Orden', moment(this.arrData.fServicio).format('YYYY-MM-DD'));
     let data = await this.Api.OrdenesDeServicioStatusAsig(this.modalData.intOSId, 3, this.idMotivo, this.txtObservaciones, this.auth.currentUserValue.intUsuarioId, this.auth.currentUserValue.intUsuarioId, moment(this.arrData.fServicio).format('YYYY-MM-DD')).subscribe((data) => {
       console.log(data);
+      this.spinner.hide();
       Swal.fire({
         icon: "success",
         title: "Atención",
@@ -276,11 +280,13 @@ export class OrdenesComponent implements OnInit {
   }
 
   async iniciarOrden() {
+    this.spinner.show();
     // let date = this.OdeS.fServicio.split('/');
     let fServicio = moment(this.arrData.fServicio).format('YYYY-MM-DD');
     console.log('Iniciar Orden', fServicio);
     let data = await this.Api.OrdenesDeServicioStatusAsig(this.modalData.intOSId, 4, 0, '', this.auth.currentUserValue.intUsuarioId, this.auth.currentUserValue.intUsuarioId, moment(this.arrData.fServicio).format('YYYY-MM-DD')).subscribe((data) => {
       console.log(data);
+      this.spinner.hide();
       Swal.fire({
         icon: "success",
         title: "Atención",

@@ -110,6 +110,7 @@ export class OrdenesSinAceptarComponent implements OnInit {
     console.log('Rechazar Orden', this.fecha);
     let data = await this.Api.OrdenesDeServicioStatusAsig(this.intOSId, 3, this.idMotivo, this.txtObservaciones, this.auth.currentUserValue.intUsuarioId, this.auth.currentUserValue.intUsuarioId, fServicio2).subscribe((data) => {
       console.log(data);
+      this.modal.dismissAll();
       this.getOrdenes();
       Swal.fire({
         icon: "success",
@@ -118,7 +119,6 @@ export class OrdenesSinAceptarComponent implements OnInit {
         allowOutsideClick: false
       }).then(
         (result) => {
-          this.modal.dismissAll();
           this.txtObservaciones = '';
           this.idMotivo = 0;
         }
